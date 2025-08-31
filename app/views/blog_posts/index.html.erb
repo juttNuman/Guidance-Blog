@@ -1,0 +1,14 @@
+<h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">---- BLOGS ----</h1>
+
+<div class="space-y-6 max-w-3xl mx-auto">
+
+  <% @blog_posts.each do |blog_post| %>
+    <div class="bg-white shadow-md rounded-lg p-6 text-left">
+      <h2 class="text-xl font-semibold text-blue-600 mb-2">
+        <%= link_to blog_post.title, blog_post, class: "hover:underline" %>
+      </h2>
+      <p class="text-gray-700"><%= truncate(blog_post.body, length: 200) %></p>
+      
+    </div>
+  <% end %>
+</div>

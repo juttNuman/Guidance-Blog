@@ -1,0 +1,40 @@
+<%= form_with model: blog_post, class: "space-y-6 max-w-2xl mx-auto bg-white shadow-md rounded-lg p-6" do |form| %>
+  <% if form.object.errors.any? %>
+    <div class="bg-red-100 text-red-800 px-4 py-3 rounded mb-4">
+      <h2 class="font-semibold mb-2">
+        <%= pluralize(form.object.errors.count, "error") %> prevented this blog from being saved:
+      </h2>
+      <ul class="list-disc list-inside text-sm">
+        <% form.object.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <!-- Blog Title -->
+  <div>
+    <%= form.label :title, class: "block text-gray-700 font-medium mb-1" %>
+    <%= form.text_field :title, 
+          placeholder: "Enter your blog title", 
+          class: "w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" %>
+  </div>
+
+  <!-- Blog Body -->
+  <div>
+    <%= form.label :body, class: "block text-gray-700 font-medium mb-1" %>
+    <%= form.text_area :body, 
+          rows: 10, 
+          placeholder: "Write your blog here... (Use Enter for new paragraph)", 
+          class: "w-full border border-gray-300 rounded-lg px-3 py-2 font-mono text-sm focus:outline-none focus:ring-2 focus:ring-blue-400" %>
+    <p class="text-xs text-gray-500 mt-1">
+      Tip: Use blank lines for paragraphs. Line breaks will be shown in the blog.
+    </p>
+  </div>
+
+  <!-- Submit -->
+  <div class="flex justify-end">
+    <%= form.submit "Save Blog", 
+          class: "bg-blue-500 hover:bg-blue-600 text-white font-semibold px-5 py-2 rounded-lg shadow" %>
+  </div>
+<% end %>
