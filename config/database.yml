@@ -12,15 +12,16 @@ test:
   database: storage/test.sqlite3
 
 # Production uses PostgreSQL on Render
-production:
+production: &production
   adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   url: <%= ENV['DATABASE_URL'] %>
 
-# Separate cable DB for SolidCable (Rails 8 requirement)
+# Separate cable DB (ActionCable)
 cable:
-  adapter: postgresql
-  encoding: unicode
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  url: <%= ENV['DATABASE_URL'] %>
+  <<: *production
+
+# Separate queue DB (SolidQueue)
+queue:
+  <<: *production
