@@ -68,7 +68,7 @@ gem "tailwindcss-rails", "~> 4.3"
 
 
 group :production do
-  gem "pg", "~> 1.5"
+  gem "pg", "~> 1.6"
 end
 
 group :development, :test do
